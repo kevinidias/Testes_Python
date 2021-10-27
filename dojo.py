@@ -8,23 +8,8 @@ Como saber se um número é feliz ou triste?
 """
 
 def happy(number):
-    if number in (1, 10, 100):
-        string = str(number)
+    next_ = sum(int(char) ** 2 for char in str(number))
+    return number in (1, 7) if number < 10 else happy(next_)
 
-        digits = [int(char) for char in string]
-        for char in string:
-            digits.append(int(char))
-
-        total = 0
-        for digit in digits:
-            total += digit
-
-        return total == 1
-
-    return False
-
-
-assert happy(1) == True 
-assert happy(10)
-assert happy(100)
-assert not happy(4)
+assert all([happy(n) for n in (1, 10, 100, 130, 97)]) 
+assert not all(happy(n) for n in (2,3,4,5,6,8,9))
